@@ -32,6 +32,9 @@ class App extends Component {
     this.setState({
       todos: [...list]
     })
+    axios.delete('https://jsonplaceholder.typicode.com/posts/'+id).then(res => {
+      console.log(res.data)
+    })
   }
 
   // 新增
@@ -40,6 +43,9 @@ class App extends Component {
     let temp = this.state.todos;
     temp.unshift(data)
     this.setState({ todos: temp })
+    axios.post('https://jsonplaceholder.typicode.com/posts',data).then(res => {
+      console.log(res.data)
+    })
   }
 
   componentDidMount() {

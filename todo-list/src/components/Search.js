@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import uuid from 'uuid'
 
 export default class Search extends Component {
   static propTypes = {
@@ -19,7 +20,7 @@ export default class Search extends Component {
     e.preventDefault()
     if (!this.state.value) return
     let newItem = {
-      id: parseInt(Math.random() * 1000),
+      id: uuid.v4(),
       completed: false,
       title: this.state.value
     }

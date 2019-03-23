@@ -1,69 +1,63 @@
-import React, { Component } from "react";
-import { Link } from "umi/link";
-// import "./index.scss";
-
-export default class Me extends Component{
-    render(){
-        return(
-            <div className="mine">
-                <div className="top">
-                    <div className="circle iconfont icon-circle"></div>
-                    <div className="username">Jiuxia</div>
-                    <div>
-                        <span>星星</span>
-                        <span className="iconfont icon-ai64"></span>
-                    </div>
-                </div>
-                <div className="bottom">
-                    <div className="item">
-                        <span className="prev-icon iconfont icon-mydata"></span>
-                        <div>资料修改</div>
-                        <span className="back-icon iconfont icon-right"></span>
-                    </div> 
-                    <div className="item">
-                        <span className="prev-icon iconfont icon-medal"></span>
-                        <div>升高高级用户</div>
-                        <span className="back-icon iconfont icon-right"></span>
-                    </div>
-                     <div className="item">
-                        <span className="prev-icon iconfont icon-message"></span>
-                        <div>系统通知</div>
-                        <span className="back-icon iconfont icon-right"></span>
-                    </div>
-                    <div className="item">
-                        <span className="prev-icon iconfont icon-haoping"></span>
-                        <div>好评鼓励</div>
-                        <span className="back-icon iconfont icon-right"></span>
-                    </div>
-                     <div className="item">
-                        <span className="prev-icon iconfont icon-gengduo"></span>
-                        <div>更多功能</div>
-                        <span className="back-icon iconfont icon-right"></span>
-                    </div>
-                    <div className="item">
-                        <span className="prev-icon iconfont icon-shezhi"></span>
-                        <div>设置</div>
-                        <span className="back-icon iconfont icon-right"></span>
-                    </div>
-                    <div className="item">
-                        <span className="prev-icon iconfont icon-fenxiang"></span>
-                        <div>分享好友</div>
-                        <span className="back-icon iconfont icon-right"></span>
-                    </div>
-                    <div className="item btn">
-                        <Link className="link" to="/login">退出登陆</Link>
-                    </div>
-                </div>
-            </div>
-        )
+import React, { PureComponent, Fragment } from 'react'
+import { WingBlank, List, WhiteSpace, Flex, Button } from 'antd-mobile';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styles from "./index.less";
+const Item = List.Item;
+const Brief = Item.Brief;
+export class Mine extends PureComponent {
+  constructor(props) {
+    super(props)
+    this.state = {
+      list: [
+        { name: '资料修改', icon: "user-edit" },
+        { name: '升级高级账户', icon: "medal", space: true },
+        { name: '系统通知', icon: "comment", space: true },
+        { name: '好评鼓励', icon: "thumbs-up" },
+        { name: '更多功能', icon: "th-large" },
+        { name: '设置', icon: "cog" },
+        { name: '分享给朋友', icon: "share" }
+      ]
     }
+  }
+  render() {
+    const { list } = this.state;
+    return (
+      <div className={styles.mine}>
+        <Flex className={styles.top} direction="column">
+          <WhiteSpace size="lg" />
+          <Flex.Item><FontAwesomeIcon className={styles.icon} icon="leaf" size="4x" border /></Flex.Item>
+          <WhiteSpace size="lg" />
+          <Flex.Item>Jiuxia</Flex.Item>
+          <Flex.Item>星星 <FontAwesomeIcon icon="star" />x5</Flex.Item>
+          <WhiteSpace size="lg" />
+        </Flex>
+        <List>
+          <WhiteSpace size="lg" />
+          {
+            list.map(li => {
+              return (
+                <Fragment>
+                  <Item
+                    key={li.name}
+                    arrow="horizontal"
+                    className={styles.item}
+                  >
+                    <FontAwesomeIcon icon={li.icon} />
+                    <span className={styles.text}>{li.name}</span>
+                  </Item>
+                  <WhiteSpace style={{ display: li.space ? 'block' : 'none' }} size="lg" />
+                </Fragment>
+              )
+            })
+          }
+        </List>
+        <WingBlank>
+          <WhiteSpace size="lg" />
+          <Button type="warning">退出登录</Button>
+        </WingBlank>
+      </div>
+    )
+  }
 }
 
-
-
-
-
-
-
-
-
+export default Mine

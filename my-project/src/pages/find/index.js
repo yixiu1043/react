@@ -1,52 +1,54 @@
-import React, { Component } from "react";
+import React, { PureComponent, Fragment } from 'react'
 import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
-import { connect } from "dva";
-import Header from "../../components/Header";
-// import { getNewDiary, showIcon } from "../../actions";
-// import "./index.scss";
-
-// @connect(
-//     state => (
-//         { ...state }
-//     )
-// )
-export default class Find extends Component {
-    componentWillMount() {
-        const { dispatch } = this.props;
-        // getNewDiary(dispatch);
-        // dispatch(showIcon(false, false, false));
-    }
-    render() {
-        const { newList } = this.props;
-        var Cards = newList.map((item, index) => {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { connect } from 'dva';
+import styles from './index.less';
+@connect(({ find }) => ({
+  notes: find.notes
+}))
+export class Find extends PureComponent {
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(
+      {
+        type: "find/fetchList"
+      }
+    )
+  }
+  render() {
+    const { notes } = this.props;
+    console.log(notes);
+    return (
+      <WingBlank size="lg" className={styles.find}>
+        {
+          notes.map(note => {
             return (
-                <WingBlank size="lg" key={index}>
-                    <WhiteSpace size="lg" />
-                    <Card style={{ background: item.bg, animationDelay: 60 * index + "ms" }}
-                        className="card">
-                        <Card.Header
-                            title={item.username}
-                            thumb={item.imgSrc}
-                        // extra={<span>{item.like}</span>}
-                        />
-                        <Card.Body style={{ color: "#000" }}>
-                            <div>{item.text}</div>
-                        </Card.Body>
-                        <Card.Footer content={item.like}
-                            extra={<div>{item.time}</div>}
-                            style={{ color: "#aaa", fontSize: "x-small" }}
-                            className="iconfont icon-aixin"
-                        />
-                    </Card>
-                    <WhiteSpace size="lg" />
-                </WingBlank>
+              <Fragment key={note.id}>
+                <WhiteSpace size="lg" />
+                <Card>
+                  <Card.Header
+                    title={note.id}
+                    thumb={note.url}
+                    thumbStyle={{ width: '50px', height: '50px', borderRadius: '50%' }}
+                  />
+                  <Card.Body>
+                    <div>{note.name}</div>
+                  </Card.Body>
+                  <Card.Footer content={note.width} extra={
+                    <div>
+                      <span className={styles.count}>{note.box_count}</span>
+                      <FontAwesomeIcon icon="heart" />
+                    </div>
+                  } />
+                </Card>
+              </Fragment>
             )
-        })
-        return (
-            <div>
-                <Header title="发现" />
-                {Cards}
-            </div>
-        )
-    }
+          })
+        }
+        <WhiteSpace size="lg" />
+      </WingBlank>
+    )
+  }
 }
+
+export default Find

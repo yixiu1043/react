@@ -1,10 +1,3 @@
-/*
- * @Author: Jan-superman 
- * @Date: 2018-09-27 20:38:14 
- * @Last Modified by: superman
- * @Last Modified time: 2019-02-01 16:58:15
- */
-
 import React, { PureComponent } from 'react';
 import MenuBar from '@/components/MenuBar';
 import NProgress from 'nprogress';
@@ -38,7 +31,7 @@ class BasicLayout extends PureComponent {
 
     return (
       <div style={{ overflowX: 'hidden' }}>
-        <MenuBar pathname={location.pathname}>{children}</MenuBar>
+        <MenuBar  pathname={location.pathname}>{children}</MenuBar>
       </div>
     );
   }

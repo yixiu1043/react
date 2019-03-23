@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'dva';
 import { Button, InputItem, Toast } from 'antd-mobile';
 import { createForm, formShape } from 'rc-form';
@@ -7,7 +7,7 @@ import router from 'umi/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from './index.less'
 
-export class Form extends Component {
+export class Form extends PureComponent {
   static propTypes = {
     form: formShape,
   };

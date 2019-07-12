@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Button, InputItem, Toast } from 'antd-mobile';
 import { createForm, formShape } from 'rc-form';
 import Link from 'umi/link';
 import router from 'umi/router';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from './index.less'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styles from './index.less';
 
 export class Form extends PureComponent {
   static propTypes = {
@@ -16,18 +16,18 @@ export class Form extends PureComponent {
       if (error) {
         const { username, password } = error;
         if (username.errors.length) {
-          Toast.info(username.errors[0].message)
-          return false
+          Toast.info(username.errors[0].message);
+          return false;
         }
         if (password.errors.length) {
-          Toast.info(password.errors[0].message)
-          return false
+          Toast.info(password.errors[0].message);
+          return false;
         }
       }
-      router.push('/')
+      router.push('/');
       // console.log(error);
     });
-  }
+  };
   render() {
     let errors;
     const { getFieldProps, getFieldError } = this.props.form;
@@ -48,7 +48,9 @@ export class Form extends PureComponent {
         >
           <FontAwesomeIcon icon="user" inverse />
         </InputItem>
-        <div className="ti20 red-font p10 h30">{(errors = getFieldError('username')) ? errors.join(',') : null}</div>
+        <div className="ti20 red-font p10 h30">
+          {(errors = getFieldError('username')) ? errors.join(',') : null}
+        </div>
         <InputItem
           clear
           type="password"
@@ -58,18 +60,19 @@ export class Form extends PureComponent {
         >
           <FontAwesomeIcon icon="unlock-alt" inverse />
         </InputItem>
-        <div className="ti20 red-font p10 h30">{(errors = getFieldError('password')) ? errors.join(',') : null}</div>
-        <Button className={styles.submit} onClick={this.submit}>提交</Button>
+        <div className="ti20 red-font p10 h30">
+          {(errors = getFieldError('password')) ? errors.join(',') : null}
+        </div>
+        <Button className={styles.submit} onClick={this.submit}>
+          提交
+        </Button>
         <div className={styles.links}>
           <span className="white-font cs">注册账号</span>
           <span className="white-font cs">忘记密码</span>
         </div>
       </div>
-    )
+    );
   }
 }
 
 export default createForm()(Form);
-
-
-

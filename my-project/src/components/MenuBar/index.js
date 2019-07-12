@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { TabBar } from 'antd-mobile';
 import Router from 'umi/router';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import theme from '@/theme';
 
 const tabBarData = [

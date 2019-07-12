@@ -26,12 +26,12 @@ class BasicLayout extends PureComponent {
     }
 
     if (BarRoutes.indexOf(location.pathname) < 0) {
-      return <div style={{height: '100%'}}>{children}</div>;
+      return <div style={{ height: '100%' }}>{children}</div>;
     }
 
     return (
       <div style={{ overflowX: 'hidden' }}>
-        <MenuBar  pathname={location.pathname}>{children}</MenuBar>
+        <MenuBar pathname={location.pathname}>{children}</MenuBar>
       </div>
     );
   }

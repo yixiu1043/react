@@ -1,25 +1,25 @@
-import { getFindList } from '@/services'
+import { getFindList } from '@/services';
 export default {
-  namespace: "find",
+  namespace: 'find',
   state: {
-    notes: []
+    notes: [],
   },
   reducers: {
     getList(state, { payload }) {
       return {
         ...state,
-        notes: payload
-      }
-    }
+        notes: payload,
+      };
+    },
   },
   effects: {
     *fetchList(payload, { call, put }) {
-      const { data } = yield call(getFindList)
+      const { data } = yield call(getFindList);
       console.log(data);
       yield put({
-        type: "getList",
-        payload: data.memes
-      })
-    }
-  }
-}
+        type: 'getList',
+        payload: data.memes,
+      });
+    },
+  },
+};

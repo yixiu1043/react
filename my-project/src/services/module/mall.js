@@ -1,4 +1,3 @@
-
 import { stringify, request, apiUrlfun } from '../config';
 
 // 获取商品列表
